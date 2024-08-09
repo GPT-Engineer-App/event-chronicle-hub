@@ -42,7 +42,10 @@ const Events = () => {
     reset();
   };
 
-  const filteredEvents = events.filter(event => {
+  const today = new Date();
+  const upcomingEvents = events.filter(event => new Date(event.date) >= today);
+
+  const filteredEvents = upcomingEvents.filter(event => {
     const matchesText = 
       event.name.toLowerCase().includes((textFilter || '').toLowerCase()) ||
       event.category.toLowerCase().includes((textFilter || '').toLowerCase()) ||
@@ -59,7 +62,7 @@ const Events = () => {
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold">Events</h1>
+        <h1 className="text-3xl font-bold">Upcoming Events</h1>
         <Dialog>
           <DialogTrigger asChild>
             <Button>Create Event</Button>
