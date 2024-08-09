@@ -115,7 +115,7 @@ const Events = () => {
         <div className="mb-4">
           <Badge 
             variant="secondary" 
-            className="cursor-pointer bg-blue-500 text-white"
+            className="cursor-pointer bg-[#AB4967] text-[#F7F2F4]"
             onClick={() => setTagFilter('')}
           >
             {tagFilter} ×

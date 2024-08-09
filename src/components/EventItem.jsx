@@ -14,12 +14,6 @@ const EventItem = ({ event, onTagClick }) => {
     onTagClick(tag);
   };
 
-  const getTagColor = (tag) => {
-    const colors = ['bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-red-500', 'bg-purple-500'];
-    const index = tag.charCodeAt(0) % colors.length;
-    return colors[index];
-  };
-
   return (
     <Card className="cursor-pointer hover:shadow-md transition-shadow" onClick={handleClick}>
       <CardHeader>
@@ -34,7 +28,7 @@ const EventItem = ({ event, onTagClick }) => {
               <Badge 
                 key={tag} 
                 variant="secondary" 
-                className={`mr-1 cursor-pointer ${getTagColor(tag)} text-white`}
+                className="mr-1 cursor-pointer bg-[#AB4967] text-[#F7F2F4]"
                 onClick={(e) => handleTagClick(e, tag)}
               >
                 {tag}

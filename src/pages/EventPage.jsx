@@ -33,7 +33,7 @@ const EventPage = () => {
           <p className="mb-4">Location: {event.location}</p>
           <div>
             {event.tags.map(tag => (
-              <Badge key={tag} variant="secondary" className="mr-1">
+              <Badge key={tag} variant="secondary" className="mr-1 bg-[#AB4967] text-[#F7F2F4]">
                 {tag}
               </Badge>
             ))}
