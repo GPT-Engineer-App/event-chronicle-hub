@@ -71,31 +71,32 @@ const Events = () => {
             <DialogTrigger asChild>
               <Button>Create Event</Button>
             </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Create New Event</DialogTitle>
-            </DialogHeader>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div>
-                <Label htmlFor="name">Event Name</Label>
-                <Input id="name" {...register("name", { required: true })} />
-              </div>
-              <div>
-                <Label htmlFor="category">Category</Label>
-                <Input id="category" {...register("category", { required: true })} />
-              </div>
-              <div>
-                <Label htmlFor="date">Date</Label>
-                <Input id="date" type="date" {...register("date", { required: true })} />
-              </div>
-              <div>
-                <Label htmlFor="tags">Tags (comma-separated)</Label>
-                <Input id="tags" {...register("tags")} />
-              </div>
-              <Button type="submit">Create Event</Button>
-            </form>
-          </DialogContent>
-        </Dialog>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Create New Event</DialogTitle>
+              </DialogHeader>
+              <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <div>
+                  <Label htmlFor="name">Event Name</Label>
+                  <Input id="name" {...register("name", { required: true })} />
+                </div>
+                <div>
+                  <Label htmlFor="category">Category</Label>
+                  <Input id="category" {...register("category", { required: true })} />
+                </div>
+                <div>
+                  <Label htmlFor="date">Date</Label>
+                  <Input id="date" type="date" {...register("date", { required: true })} />
+                </div>
+                <div>
+                  <Label htmlFor="tags">Tags (comma-separated)</Label>
+                  <Input id="tags" {...register("tags")} />
+                </div>
+                <Button type="submit">Create Event</Button>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
       <div className="flex space-x-4 mb-4">
         <Input
