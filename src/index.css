@@ -4,54 +4,52 @@
  
 @layer base {
   :root {
-    --cream: 55 47% 87%;
-    --khaki: 51 39% 71%;
-    --sage: 60 14% 57%;
-    --peach: 14 44% 70%;
-    --mauve: 355 18% 63%;
+    --background: 345 17% 92%;
+    --event: 340 20% 96%;
+    --tag: 340 40% 48%;
+    --text: 160 25% 7%;
 
-    --background: var(--cream);
-    --foreground: 60 14% 20%;
-    --card: var(--khaki);
-    --card-foreground: 60 14% 20%;
-    --popover: var(--cream);
-    --popover-foreground: 60 14% 20%;
-    --primary: var(--peach);
-    --primary-foreground: 60 14% 20%;
-    --secondary: var(--khaki);
-    --secondary-foreground: 60 14% 20%;
-    --muted: var(--khaki);
-    --muted-foreground: 60 14% 40%;
-    --accent: var(--mauve);
-    --accent-foreground: var(--cream);
+    --foreground: var(--text);
+    --card: var(--event);
+    --card-foreground: var(--text);
+    --popover: var(--background);
+    --popover-foreground: var(--text);
+    --primary: var(--tag);
+    --primary-foreground: var(--event);
+    --secondary: var(--event);
+    --secondary-foreground: var(--text);
+    --muted: var(--event);
+    --muted-foreground: color-mix(in srgb, var(--text) 60%, var(--background));
+    --accent: var(--tag);
+    --accent-foreground: var(--event);
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: var(--cream);
-    --border: var(--khaki);
-    --input: var(--khaki);
-    --ring: var(--peach);
+    --destructive-foreground: var(--event);
+    --border: var(--event);
+    --input: var(--event);
+    --ring: var(--tag);
     --radius: 0.5rem;
   }
  
   .dark {
-    --background: var(--sage);
-    --foreground: var(--cream);
-    --card: var(--sage);
-    --card-foreground: var(--cream);
-    --popover: var(--sage);
-    --popover-foreground: var(--cream);
-    --primary: var(--peach);
-    --primary-foreground: var(--sage);
-    --secondary: var(--mauve);
-    --secondary-foreground: var(--cream);
-    --muted: var(--mauve);
-    --muted-foreground: var(--khaki);
-    --accent: var(--peach);
-    --accent-foreground: var(--sage);
+    --background: color-mix(in srgb, var(--text) 10%, var(--background));
+    --foreground: var(--event);
+    --card: color-mix(in srgb, var(--text) 20%, var(--background));
+    --card-foreground: var(--event);
+    --popover: color-mix(in srgb, var(--text) 20%, var(--background));
+    --popover-foreground: var(--event);
+    --primary: var(--tag);
+    --primary-foreground: var(--event);
+    --secondary: color-mix(in srgb, var(--text) 30%, var(--background));
+    --secondary-foreground: var(--event);
+    --muted: color-mix(in srgb, var(--text) 30%, var(--background));
+    --muted-foreground: color-mix(in srgb, var(--event) 60%, var(--background));
+    --accent: var(--tag);
+    --accent-foreground: var(--event);
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: var(--cream);
-    --border: var(--mauve);
-    --input: var(--mauve);
-    --ring: var(--peach);
+    --destructive-foreground: var(--event);
+    --border: color-mix(in srgb, var(--text) 40%, var(--background));
+    --input: color-mix(in srgb, var(--text) 40%, var(--background));
+    --ring: var(--tag);
   }
 }
  
