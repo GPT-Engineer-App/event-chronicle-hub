@@ -28,7 +28,7 @@ const EventItem = ({ event, onTagClick }) => {
               <Badge 
                 key={tag} 
                 variant="secondary" 
-                className="mr-1 cursor-pointer bg-[#AB4967] text-[#F7F2F4]"
+                className="mr-1 cursor-pointer bg-[#AB4967] text-[#F7F2F4] hover:bg-[#8A3B52] transition-colors duration-200"
                 onClick={(e) => handleTagClick(e, tag)}
               >
                 {tag}
