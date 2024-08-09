@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import EventList from '../components/EventList';
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useEventContext } from '../contexts/EventContext';
+import { useNavigate } from 'react-router-dom';
 
 const PastEvents = () => {
   const { events } = useEventContext();
+  const navigate = useNavigate();
   const [textFilter, setTextFilter] = useState('');
   const [tagFilter, setTagFilter] = useState('');
 
@@ -33,7 +36,10 @@ const PastEvents = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Past Events</h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-3xl font-bold">Past Events</h1>
+        <Button onClick={() => navigate('/events')}>View Upcoming Events</Button>
+      </div>
       <div className="mb-4">
         <Input
           type="text"

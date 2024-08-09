@@ -7,9 +7,11 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { Badge } from "@/components/ui/badge";
 import { useEventContext } from '../contexts/EventContext';
+import { useNavigate } from 'react-router-dom';
 
 const Events = () => {
   const { events, addEvent } = useEventContext();
+  const navigate = useNavigate();
   const [textFilter, setTextFilter] = useState('');
   const [startDateFilter, setStartDateFilter] = useState('');
   const [endDateFilter, setEndDateFilter] = useState('');
@@ -63,10 +65,12 @@ const Events = () => {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-3xl font-bold">Upcoming Events</h1>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button>Create Event</Button>
-          </DialogTrigger>
+        <div className="space-x-2">
+          <Button onClick={() => navigate('/past-events')}>View Past Events</Button>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button>Create Event</Button>
+            </DialogTrigger>
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Create New Event</DialogTitle>
