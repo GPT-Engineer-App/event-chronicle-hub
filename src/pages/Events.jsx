@@ -7,7 +7,8 @@ import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 
 const Events = () => {
-  const [filter, setFilter] = useState('');
+  const [textFilter, setTextFilter] = useState('');
+  const [dateFilter, setDateFilter] = useState('');
   const [events, setEvents] = useState([
     { id: 1, name: 'Tech Conference 2024', category: 'Technology', date: '2024-06-15', tags: ['tech', 'conference'] },
     { id: 2, name: 'Summer Music Festival', category: 'Entertainment', date: '2024-07-20', tags: ['music', 'festival'] },
@@ -17,8 +18,12 @@ const Events = () => {
 
   const { register, handleSubmit, reset } = useForm();
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
+  const handleTextFilterChange = (e) => {
+    setTextFilter(e.target.value);
+  };
+
+  const handleDateFilterChange = (e) => {
+    setDateFilter(e.target.value);
   };
 
   const onSubmit = (data) => {
@@ -65,14 +70,21 @@ const Events = () => {
           </DialogContent>
         </Dialog>
       </div>
-      <Input
-        type="text"
-        placeholder="Filter events..."
-        value={filter}
-        onChange={handleFilterChange}
-        className="mb-4"
-      />
-      <EventList events={events} filter={filter} />
+      <div className="flex space-x-4 mb-4">
+        <Input
+          type="text"
+          placeholder="Filter events..."
+          value={textFilter}
+          onChange={handleTextFilterChange}
+          className="flex-grow"
+        />
+        <Input
+          type="date"
+          value={dateFilter}
+          onChange={handleDateFilterChange}
+        />
+      </div>
+      <EventList events={events} textFilter={textFilter} dateFilter={dateFilter} />
     </div>
   );
 };

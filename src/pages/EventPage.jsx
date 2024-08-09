@@ -1,10 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const EventPage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
@@ -32,6 +34,7 @@ const EventPage = () => {
 
   return (
     <div className="container mx-auto p-4">
+      <Button onClick={() => navigate('/events')} className="mb-4">Back to Events</Button>
       <Card>
         <CardHeader>
           <CardTitle>{event.name}</CardTitle>
