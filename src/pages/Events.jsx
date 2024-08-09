@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
+import { Badge } from "@/components/ui/badge";
 
 const Events = () => {
   const [textFilter, setTextFilter] = useState('');
   const [dateFilter, setDateFilter] = useState('');
+  const [tagFilter, setTagFilter] = useState('');
   const [events, setEvents] = useState([
     { id: 1, name: 'Tech Conference 2024', category: 'Technology', date: '2024-06-15', tags: ['tech', 'conference'] },
     { id: 2, name: 'Summer Music Festival', category: 'Entertainment', date: '2024-07-20', tags: ['music', 'festival'] },
@@ -26,6 +28,10 @@ const Events = () => {
     setDateFilter(e.target.value);
   };
 
+  const handleTagClick = (tag) => {
+    setTagFilter(tag === tagFilter ? '' : tag);
+  };
+
   const onSubmit = (data) => {
     const newEvent = {
       id: events.length + 1,
@@ -35,6 +41,18 @@ const Events = () => {
     setEvents([...events, newEvent]);
     reset();
   };
+
+  const filteredEvents = events.filter(event => {
+    const matchesText = 
+      event.name.toLowerCase().includes((textFilter || '').toLowerCase()) ||
+      event.category.toLowerCase().includes((textFilter || '').toLowerCase()) ||
+      event.tags.some(tag => tag.toLowerCase().includes((textFilter || '').toLowerCase()));
+    
+    const matchesDate = !dateFilter || event.date === dateFilter;
+    const matchesTag = !tagFilter || event.tags.includes(tagFilter);
+
+    return matchesText && matchesDate && matchesTag;
+  });
 
   return (
     <div className="container mx-auto p-4">
@@ -84,7 +102,18 @@ const Events = () => {
           onChange={handleDateFilterChange}
         />
       </div>
-      <EventList events={events} textFilter={textFilter} dateFilter={dateFilter} />
+      {tagFilter && (
+        <div className="mb-4">
+          <Badge 
+            variant="secondary" 
+            className="cursor-pointer bg-blue-500 text-white"
+            onClick={() => setTagFilter('')}
+          >
+            {tagFilter} ×
+          </Badge>
+        </div>
+      )}
+      <EventList events={filteredEvents} onTagClick={handleTagClick} />
     </div>
   );
 };

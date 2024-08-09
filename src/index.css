@@ -11,17 +11,17 @@
     --mauve: 355 18% 63%;
 
     --background: var(--cream);
-    --foreground: var(--sage);
+    --foreground: 60 14% 20%;
     --card: var(--khaki);
-    --card-foreground: var(--sage);
+    --card-foreground: 60 14% 20%;
     --popover: var(--cream);
-    --popover-foreground: var(--sage);
+    --popover-foreground: 60 14% 20%;
     --primary: var(--peach);
-    --primary-foreground: var(--cream);
+    --primary-foreground: 60 14% 20%;
     --secondary: var(--khaki);
-    --secondary-foreground: var(--sage);
+    --secondary-foreground: 60 14% 20%;
     --muted: var(--khaki);
-    --muted-foreground: var(--sage);
+    --muted-foreground: 60 14% 40%;
     --accent: var(--mauve);
     --accent-foreground: var(--cream);
     --destructive: 0 84.2% 60.2%;
