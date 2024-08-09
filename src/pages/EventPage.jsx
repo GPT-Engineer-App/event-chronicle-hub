@@ -1,35 +1,18 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useEventContext } from '../contexts/EventContext';
 
 const EventPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [event, setEvent] = useState(null);
+  const { events } = useEventContext();
 
-  useEffect(() => {
-    // Simulated API call to fetch event details
-    const fetchEvent = async () => {
-      // Replace this with an actual API call in a real application
-      const mockEvent = {
-        id: parseInt(id),
-        name: 'Tech Conference',
-        category: 'Technology',
-        date: '2024-06-15',
-        tags: ['tech', 'conference'],
-        description: 'A conference showcasing the latest in technology innovations.',
-        location: 'San Francisco, CA',
-      };
-      setEvent(mockEvent);
-    };
-
-    fetchEvent();
-  }, [id]);
+  const event = events.find(e => e.id === parseInt(id));
 
   if (!event) {
-    return <div>Loading...</div>;
+    return <div>Event not found</div>;
   }
 
   return (

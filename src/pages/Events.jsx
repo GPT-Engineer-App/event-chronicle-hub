@@ -6,17 +6,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
 import { Badge } from "@/components/ui/badge";
+import { useEventContext } from '../contexts/EventContext';
 
 const Events = () => {
+  const { events, addEvent } = useEventContext();
   const [textFilter, setTextFilter] = useState('');
-  const [dateFilter, setDateFilter] = useState('');
+  const [startDateFilter, setStartDateFilter] = useState('');
+  const [endDateFilter, setEndDateFilter] = useState('');
   const [tagFilter, setTagFilter] = useState('');
-  const [events, setEvents] = useState([
-    { id: 1, name: 'Tech Conference 2024', category: 'Technology', date: '2024-06-15', tags: ['tech', 'conference'] },
-    { id: 2, name: 'Summer Music Festival', category: 'Entertainment', date: '2024-07-20', tags: ['music', 'festival'] },
-    { id: 3, name: 'Modern Art Exhibition', category: 'Art', date: '2024-05-10', tags: ['art', 'exhibition'] },
-    { id: 4, name: 'Food and Wine Fair', category: 'Culinary', date: '2024-08-05', tags: ['food', 'wine'] },
-  ]);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -24,8 +21,12 @@ const Events = () => {
     setTextFilter(e.target.value);
   };
 
-  const handleDateFilterChange = (e) => {
-    setDateFilter(e.target.value);
+  const handleStartDateFilterChange = (e) => {
+    setStartDateFilter(e.target.value);
+  };
+
+  const handleEndDateFilterChange = (e) => {
+    setEndDateFilter(e.target.value);
   };
 
   const handleTagClick = (tag) => {
@@ -34,11 +35,10 @@ const Events = () => {
 
   const onSubmit = (data) => {
     const newEvent = {
-      id: events.length + 1,
       ...data,
       tags: data.tags ? data.tags.split(',').map(tag => tag.trim()) : []
     };
-    setEvents([...events, newEvent]);
+    addEvent(newEvent);
     reset();
   };
 
@@ -48,10 +48,12 @@ const Events = () => {
       event.category.toLowerCase().includes((textFilter || '').toLowerCase()) ||
       event.tags.some(tag => tag.toLowerCase().includes((textFilter || '').toLowerCase()));
     
-    const matchesDate = !dateFilter || event.date === dateFilter;
+    const eventDate = new Date(event.date);
+    const matchesStartDate = !startDateFilter || eventDate >= new Date(startDateFilter);
+    const matchesEndDate = !endDateFilter || eventDate <= new Date(endDateFilter);
     const matchesTag = !tagFilter || event.tags.includes(tagFilter);
 
-    return matchesText && matchesDate && matchesTag;
+    return matchesText && matchesStartDate && matchesEndDate && matchesTag;
   });
 
   return (
@@ -98,8 +100,15 @@ const Events = () => {
         />
         <Input
           type="date"
-          value={dateFilter}
-          onChange={handleDateFilterChange}
+          value={startDateFilter}
+          onChange={handleStartDateFilterChange}
+          placeholder="Start Date"
+        />
+        <Input
+          type="date"
+          value={endDateFilter}
+          onChange={handleEndDateFilterChange}
+          placeholder="End Date"
         />
       </div>
       {tagFilter && (
